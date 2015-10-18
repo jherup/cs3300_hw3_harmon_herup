@@ -19,9 +19,18 @@ Background: tasks have been added to database
   | Improve security        | Simmons | 12-Jun-1981  |
   | Steal milk              | May     | 21-Jun-2000  |
 
-  And  I am on the ProjectManager home page
+  And I am on the ProjectManager home page
 
 Scenario: restrict to tasks owned by 'Coulson' or 'Skye'
+  When I select the following users: Coulson, Skye
+  And I unselect the following users: May, Fitz, Ward, Simmons
+  When I press "Refresh"
+  Then the "projects" field should contain "Coulson"
+#  And I should see /Skye/
+#  And I should not see "May"
+#  And I should not see "<td>Coulson"
+#  And I should not see "<td>Fitz"
+#  And I should not see "<td>Simmons"
   # enter step(s) to check the 'Coulson' and 'Skye' checkboxes
   # enter step(s) to uncheck all other checkboxes
   # enter step to "submit" the search form on the homepage

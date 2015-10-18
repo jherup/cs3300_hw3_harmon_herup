@@ -4,8 +4,9 @@ Given /the following tasks exist/ do |task_table|
   task_table.hashes.each do |task|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that task to the database here.
+    Project.create({:title => task["title"], :user => task["user"], :due_date => task["due_date"]})
   end
-  fail "Unimplemented"
+  #fail "Unimplemented"
 end
 
 # Make sure that one string (regexp) occurs before or after another one
@@ -22,10 +23,19 @@ end
 #  "When I select the following users: Coulson"
 
 When /I (un)?select the following users: (.*)/ do |uncheck, user_list|
+  if uncheck=="un"
+    user_list.split(', ').each do |current_user|
+      step %{I uncheck "users_#{current_user}"}
+    end
+  else
+    user_list.split(', ').each do |current_user|
+      step %{I check "users_#{current_user}"}
+    end
+  end
   # HINT: use String#split to split up the user_list, then
   #   iterate over the users and reuse the "When I check..." or
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
-  fail "Unimplemented"
+  #fail "Unimplemented"
 end
 
 Then /I should see all the tasks/ do
