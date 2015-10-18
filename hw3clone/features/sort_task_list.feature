@@ -23,6 +23,15 @@ Background: tasks have been added to database
 
 Scenario: sort tasks alphabetically
   When I follow "Task Title"
+  Then I should see "Add Mobile support" before "Add Site overview"
+  Then I should see "Add Site overview" before "Add User Profile"
+  Then I should see "Add User Profile" before "Create Login Modal"
+  Then I should see "Create Login Modal" before "Fix header Display"
+  Then I should see "Fix header Display" before "Get fastload working"
+  Then I should see "Get fastload working" before "Improve navigation"
+  Then I should see "Improve navigation" before "Improve security"
+  Then I should see "Improve security" before "Raid cookie jar"
+  Then I should see "Raid cookie jar" before "Steal milk"
   # your steps here
 
 Scenario: sort tasks in increasing order of due date

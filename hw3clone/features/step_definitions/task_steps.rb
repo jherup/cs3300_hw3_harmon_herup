@@ -15,7 +15,14 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  fail "Unimplemented"
+  #puts e1
+  #puts e2
+  #puts "hello #{e1} and #{e2}!"
+  #puts page.body
+  if (page.body =~ /.*#{e1}.*#{e2}.*/m) != 0
+    fail "String #{e1} not found before #{e2}"
+  end
+  #fail "Unimplemented"
 end
 
 # Make it easier to express checking or unchecking several boxes at once
@@ -51,6 +58,8 @@ Then /I should not see the following tasks: (.*)/ do |task_list|
 end
 
 Then /I should see all the tasks/ do
-  # Make sure that all the tasks in the app are visible in the table
-  fail "Unimplemented"
+  if page.all("table#projects tr").count - 1 != Project.count
+    fail "Not equal"
+  end
+  #fail "Unimplemented"
 end

@@ -36,12 +36,12 @@ Scenario: restrict to tasks owned by 'Coulson' or 'Skye'
 Scenario: all users selected
   When I select the following users: Coulson, Skye, May, Fitz, Ward, Simmons
   And I press "Refresh"
-  Then I should see the following tasks: "Add User Profile", "Create Login Modal", "Add Site overview", "Fix header Display", "Add Mobile support", "Get fastload working", "Improve navigation", "Raid cookie jar", "Improve security", "Steal milk"
+  Then I should see all the tasks
   # see assignment
 
 
 Scenario: no users selected
   When I unselect the following users: Coulson, Skye, May, Fitz, Ward, Simmons
   And I press "Refresh"
-  Then I should see the following tasks: "Add User Profile", "Create Login Modal", "Add Site overview", "Fix header Display", "Add Mobile support", "Get fastload working", "Improve navigation", "Raid cookie jar", "Improve security", "Steal milk"
+  Then I should see all the tasks
   # you are NOT required to do this one, but you can do it for extra practice
