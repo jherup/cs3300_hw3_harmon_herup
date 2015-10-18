@@ -36,4 +36,15 @@ Scenario: sort tasks alphabetically
 
 Scenario: sort tasks in increasing order of due date
   When I follow "Due Date"
-  # your steps here
+  Then I should see "Improve navigation" before "Improve security"
+  Then I should see "Improve security" before "Create Login Modal"
+  Then I should see "Create Login Modal" before "Fix header Display"
+  Then I should see "Fix header Display" before "Add User Profile"
+  Then I should see "Add User Profile" before "Steal milk"
+  Then I should see "Steal milk" before "Get fastload working"
+  Then I should see "Get fastload working" before "Add Site overview"
+  Then I should see "Add Site overview" before "Raid cookie jar"
+  Then I should see "Raid cookie jar" before "Add Mobile support"
+
+  
+
