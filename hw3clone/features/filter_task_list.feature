@@ -25,12 +25,8 @@ Scenario: restrict to tasks owned by 'Coulson' or 'Skye'
   When I select the following users: Coulson, Skye
   And I unselect the following users: May, Fitz, Ward, Simmons
   When I press "Refresh"
-  Then the "projects" field should contain "Coulson"
-#  And I should see /Skye/
-#  And I should not see "May"
-#  And I should not see "<td>Coulson"
-#  And I should not see "<td>Fitz"
-#  And I should not see "<td>Simmons"
+  Then I should see the following tasks: "Add User Profile", "Create Login Modal", "Add Site overview"
+  And I should not see the following tasks: "Fix header Display", "Add Mobile support", "Get fastload working", "Improve navigation", "Raid cookie jar", "Improve security", "Steal milk"
   # enter step(s) to check the 'Coulson' and 'Skye' checkboxes
   # enter step(s) to uncheck all other checkboxes
   # enter step to "submit" the search form on the homepage
@@ -38,8 +34,14 @@ Scenario: restrict to tasks owned by 'Coulson' or 'Skye'
   # enter step(s) to ensure that other tasks are not visible
 
 Scenario: all users selected
+  When I select the following users: Coulson, Skye, May, Fitz, Ward, Simmons
+  And I press "Refresh"
+  Then I should see the following tasks: "Add User Profile", "Create Login Modal", "Add Site overview", "Fix header Display", "Add Mobile support", "Get fastload working", "Improve navigation", "Raid cookie jar", "Improve security", "Steal milk"
   # see assignment
 
 
 Scenario: no users selected
+  When I unselect the following users: Coulson, Skye, May, Fitz, Ward, Simmons
+  And I press "Refresh"
+  Then I should see the following tasks: "Add User Profile", "Create Login Modal", "Add Site overview", "Fix header Display", "Add Mobile support", "Get fastload working", "Improve navigation", "Raid cookie jar", "Improve security", "Steal milk"
   # you are NOT required to do this one, but you can do it for extra practice

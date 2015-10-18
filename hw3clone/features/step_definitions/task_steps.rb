@@ -38,6 +38,18 @@ When /I (un)?select the following users: (.*)/ do |uncheck, user_list|
   #fail "Unimplemented"
 end
 
+Then /I should see the following tasks: (.*)/ do |task_list|
+  task_list.split(', ').each do |current_task|
+    step %{I should see #{current_task}}
+  end
+end
+
+Then /I should not see the following tasks: (.*)/ do |task_list|
+  task_list.split(', ').each do |current_task|
+    step %{I should not see #{current_task}}
+  end
+end
+
 Then /I should see all the tasks/ do
   # Make sure that all the tasks in the app are visible in the table
   fail "Unimplemented"
