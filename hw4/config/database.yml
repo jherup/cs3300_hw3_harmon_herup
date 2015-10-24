@@ -1,0 +1,19 @@
+test: &test
+  adapter: sqlite3
+  encoding: unicode
+  database: db/projectmanagerv4_test.sqlite3
+  pool: 5
+  username: myapp
+  password: password
+
+development: &development
+  adapter: sqlite3
+  encoding: unicode
+  database: db/projectmanagerv4_development.sqlite3
+  pool: 5
+  username: myapp
+  password: password
+
+
+cucumber:
+  <<: *test

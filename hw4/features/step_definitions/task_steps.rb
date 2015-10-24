@@ -58,5 +58,8 @@ Then /I should not see the following tasks: (.*)/ do |task_list|
 end
 
 Then /I should see all the tasks/ do
-  assert(1==1)
+  if page.all("table#projects tr").count - 1 != Project.count
+    fail "Not equal"
+  end
+  #fail "Unimplemented"
 end
