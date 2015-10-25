@@ -63,14 +63,14 @@ class ProjectsController < ApplicationController
 
   def similar
     id = params[:project_id]
-    manager = Project.find(id).manager
-    if manager == nil or manager.size < 2
-      title = Project.find(id).title
-      flash[:notice] = "'#{title}' has no manager info"
-      redirect_to '/projects/'
-      return
-    end
-    @projects = Project.where(:manager => manager)
+    project = Project.find(id)
+    manager = project.manager
+    if not manager.blank?
+      @projects = Project.similar_managers(manager)
+    else
+      flash[:notice] = "'#{project.title}' has no manager info"
+      redirect_to projects_path
+    end 
   end
 
 end

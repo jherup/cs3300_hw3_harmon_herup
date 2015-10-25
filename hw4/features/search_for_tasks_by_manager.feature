@@ -38,5 +38,5 @@ Scenario: can't find similar tasks if we don't know manager (sad path)
   Given I am on the details page for "Add Site overview"
   Then  I should not see "Nick Fury"
   When  I follow "Find Tasks With Same Manager"
-  Then  I will be on the projcet home page
+  Then  I should be on the projects page
   And   I should see "'Add Site overview' has no manager info"

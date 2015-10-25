@@ -14,13 +14,13 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'thin'
+  gem 'factory_girl_rails'
 end
 
 group :test do
   gem 'simplecov'
-
   gem 'cucumber-rails'
-
+  gem 'faker'
   gem 'guard'
   gem 'guard-cucumber'
   gem 'guard-rspec'

@@ -1,6 +1,7 @@
 # Add a declarative step here for populating the DB with tasks.
 
 Given /the following tasks exist/ do |task_table|
+  Project.delete_all
   task_table.hashes.each do |task|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that task to the database here.
@@ -56,6 +57,7 @@ Then /I should not see the following tasks: (.*)/ do |task_list|
 end
 
 Then /I should see all the tasks/ do
+  puts "count :#{page.all("table#projects tr").count} real : #{Project.count}\n\n\n\n\n"
   if page.all("table#projects tr").count - 1 != Project.count
     fail "Not equal"
   end
