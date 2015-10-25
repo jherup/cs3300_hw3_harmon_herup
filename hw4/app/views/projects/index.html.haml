@@ -1,6 +1,8 @@
 -#  This file is app/views/projects/index.html.haml
 %h1 All Project Tasks
 
+%h1= @test
+
 = form_tag projects_path, :method => :get, :id => 'users_form' do
   = hidden_field_tag ":title_sort", true if @title_header
   = hidden_field_tag ":date_sort", true if @date_header

@@ -21,7 +21,7 @@
 
 %p#manager= @project.manager
 
-= link_to 'Find Tasks With Same Manager', project_path('find_similar_tasks', :manager => @project.manager)
+= link_to 'Find Tasks With Same Manager', project_similar_url(@project)
 = link_to 'Edit', edit_project_path(@project)
 = button_to 'Delete', project_path(@project), :method => :delete, :confirm => 'Are you sure?'
 = link_to 'Back to project task list', projects_path()

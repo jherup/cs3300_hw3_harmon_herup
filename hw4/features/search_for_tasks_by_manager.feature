@@ -19,24 +19,25 @@ Background: tasks in database
   | Improve security        | Simmons     |Coulson    | 12-Jun-1981      |
   | Steal milk              | May     |Coulson    | 21-Jun-2000      |
  
-#Scenario: add manager to existing task
-  #When I go to the edit page for "Raid cookie jar"
-  #And  I fill in "Manager" with "Coulson"
-  #And  I press "Update Project Task Info"
-  #Then the manager of "Raid cookie jar" should be "Coulson"
+Scenario: add manager to existing task
+  When I go to the edit page for "Raid cookie jar"
+  And  I fill in "Manager" with "Coulson"
+  And  I press "Update Project Task Info"
+  Then the manager of "Raid cookie jar" should be "Coulson"
  
 Scenario: find task with same manager
   Given I am on the details page for "Add User Profile"
-  When  I test follow "Find Tasks With Same Manager"
-  #Then  I should be on the Similar Tasks page for "Add User Profile"
-  #And   I should see "Create Login Modal"
-  #And   I should see "Get fastload working"
-  #But   I should see "Improve navigation"
-  #But   I should not see "Raid cookie jar"
+  When  I follow "Find Tasks With Same Manager"
+  Then  I should be on the Similar Tasks page for "Add User Profile"
+  And   I should see "Create Login Modal"
+  And   I should see "Get fastload working"
+  But   I should not see "Improve navigation"
+  But   I should not see "Raid cookie jar"
  
 Scenario: can't find similar tasks if we don't know manager (sad path)
-  #Given I am on the details page for "Add Site overview"
-  #Then  I should not see "Nick Fury"
-  #When  I follow "Find Tasks With Same Manager"
-  #Then  I should be on the home page
+  Given I am on the details page for "Add Site overview"
+  Then  I should not see "Nick Fury"
+  When  I follow "Find Tasks With Same Manager"
+  Then  I am on the ProjectManager home page
+  And   I test should see "'Add Site overview' has no manager info"
   #And   I should see "'Add Site overview' has no manager info"

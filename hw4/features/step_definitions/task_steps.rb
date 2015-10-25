@@ -4,9 +4,13 @@ Given /the following tasks exist/ do |task_table|
   task_table.hashes.each do |task|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that task to the database here.
-    Project.create({:title => task["title"], :user => task["user"], :due_date => task["due_date"]})
+    Project.create({:title => task["title"], :user => task["user"], :due_date => task["due_date"], :manager => task["manager"]})
   end
   #fail "Unimplemented"
+end
+
+Then /^(?:|I )test should see "([^"]*)"$/ do |text|
+  page.should have_selector ".alert", text: text
 end
 
 # Make sure that one string (regexp) occurs before or after another one

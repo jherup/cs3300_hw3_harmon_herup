@@ -13,9 +13,12 @@ ProjectManager::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   #match 'coverage' => 'coverage#index', :via => :post
-  match 'projects/find_similar_tasks' => 'projects#find_similar_tasks', :via => :get
-  resources :projects
+  #match '/projects/find_similar_tasks' => 'projects#find_similar_tasks', :via => :get
+  resources :projects do 
+    match 'similar' => 'projects#similar', :via => :get
+  end
   root :to => redirect('/projects')
+
   # Sample resource route with options:
   #   resources :products do
   #     member do

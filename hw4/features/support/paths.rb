@@ -13,18 +13,17 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    #when /^the (ProjectManager )?home\s?page$/ then '/projects'
-    # when /^the projects page$/ then '/projects'
-    # when /^the edit page for "(.*)"$/
-    #   id = Project.find_by_title($1).id
-    #   "/projects/#{id}/edit"
+    when /^the (ProjectManager )?home\s?page$/ then '/projects'
+    when /^the projects page$/ then '/projects'
+    when /^the edit page for "(.*)"$/
+       id = Project.find_by_title($1).id
+       "/projects/#{id}/edit"
     when /^the details page for "(.*)"$/
-      puts page.body
       id = Project.find_by_title($1).id
       "/projects/#{id}/"
     when /^the Similar Tasks page for "(.*)"$/ 
-      puts page.body
-     '/projects/find_similar_tasks'
+      id = Project.find_by_title($1).id
+      "/projects/#{id}/similar"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

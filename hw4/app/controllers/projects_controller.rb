@@ -16,6 +16,10 @@ class ProjectsController < ApplicationController
     end
     @all_users = Project.getUsers
     @selected_users = params[:users] || session[:users] || {}
+    if session[:manager_info] != nil then
+      @test = @@test
+    end
+
     
     if @selected_users == {}
       @selected_users = Hash[@all_users.map {|user| [user, user]}]
@@ -61,8 +65,18 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:user, :title, :description, :extended_description, :due_date, :manager)
   end
 
-  def find_similar_tasks
-    @projects = Project.where(:manager => params[:manager])
+  def similar
+    id = params[:project_id]
+    manager = Project.find(id).manager
+    if manager == nil
+      title = Project.find(id).title
+      @@test = "'#{title}' has no manager info"
+      @@flag = false
+      session[:manager_info] = "test"
+      redirect_to '/projects', :manager_info => "'#{title}' has no manager info"
+      return
+    end
+    @projects = Project.where(:manager => manager)
   end
 
 end
