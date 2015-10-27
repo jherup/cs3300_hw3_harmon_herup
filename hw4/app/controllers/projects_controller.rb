@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-   sort = params[:sort] || session[:sort]
+    sort = params[:sort] || session[:sort]
     case sort
     when 'title'
       ordering, @title_header = {:title => :asc}, 'hilite'
@@ -16,10 +16,6 @@ class ProjectsController < ApplicationController
     end
     @all_users = Project.getUsers
     @selected_users = params[:users] || session[:users] || {}
-    if session[:manager_info] != nil then
-      @test = @@test
-    end
-
     
     if @selected_users == {}
       @selected_users = Hash[@all_users.map {|user| [user, user]}]
@@ -68,12 +64,10 @@ class ProjectsController < ApplicationController
   def similar
     id = params[:project_id]
     manager = Project.find(id).manager
-    if manager == nil
+    if manager == nil or manager.size < 2
       title = Project.find(id).title
-      @@test = "'#{title}' has no manager info"
-      @@flag = false
-      session[:manager_info] = "test"
-      redirect_to '/projects', :manager_info => "'#{title}' has no manager info"
+      flash[:notice] = "'#{title}' has no manager info"
+      redirect_to '/projects/'
       return
     end
     @projects = Project.where(:manager => manager)

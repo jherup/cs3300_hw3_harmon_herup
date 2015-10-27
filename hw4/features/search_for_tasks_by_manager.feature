@@ -11,7 +11,7 @@ Background: tasks in database
   | Add User Profile        | Coulson     |Nick Fury    | 25-Nov-1992      |
   | Create Login Modal      | Skye    |Nick Fury    | 26-Oct-1984      |
   | Fix header Display      | May     |Coulson    | 21-Jul-1989      |
-  | Add Mobile support      | Fitz    |        | 10-Aug-2011      |
+  | Add Mobile support      | Fitz    || 10-Aug-2011      |
   | Get fastload working    | Fitz    |Nick Fury    | 5-Jan-2001       |
   | Add Site overview       | Coulson     |        | 25-Apr-2001      |
   | Improve navigation      | Fitz    |Coulson    | 6-Apr-1968       |
@@ -38,6 +38,5 @@ Scenario: can't find similar tasks if we don't know manager (sad path)
   Given I am on the details page for "Add Site overview"
   Then  I should not see "Nick Fury"
   When  I follow "Find Tasks With Same Manager"
-  Then  I am on the ProjectManager home page
-  And   I test should see "'Add Site overview' has no manager info"
-  #And   I should see "'Add Site overview' has no manager info"
+  Then  I will be on the projcet home page
+  And   I should see "'Add Site overview' has no manager info"

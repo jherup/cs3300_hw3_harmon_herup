@@ -9,9 +9,7 @@ Given /the following tasks exist/ do |task_table|
   #fail "Unimplemented"
 end
 
-Then /^(?:|I )test should see "([^"]*)"$/ do |text|
-  page.should have_selector ".alert", text: text
-end
+
 
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
@@ -19,10 +17,6 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  #puts e1
-  #puts e2
-  #puts "hello #{e1} and #{e2}!"
-  #puts page.body
   if (page.body =~ /.*#{e1}.*#{e2}.*/m) != 0
     fail "String #{e1} not found before #{e2}"
   end
